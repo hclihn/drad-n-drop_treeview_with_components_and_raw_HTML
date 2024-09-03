@@ -1,0 +1,19 @@
+/* styles */
+body {
+  margin: 20px;
+}
+h1 {
+  background-color: blue;
+  padding: 5px;
+  color: white;
+}
+p {
+  color: green;
+}
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+.drag {
+  background: magenta;
+}

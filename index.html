@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue test</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <!-- dragable stuff -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
+
+    <link rel="stylesheet" href="/style.css" />
+    <script src="tools.js"></script>
+    <script src="component.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <v-app
+        ><v-main>
+          <h1>My Vue App</h1>
+          <p>
+            Drag-n-drop treeview from
+            https://github.com/suusan2go/vuetify-draggable-treeview
+          </p>
+          <v-btn @click="clear">Clear</v-btn>
+          <v-draggable-treeview v-model="items" :load-children="load_ch" dense>
+            <template v-slot:prepend="{item, open}">
+              <v-icon
+                >{{item.children? 'mdi-account-multiple' :
+                'mdi-account'}}</v-icon
+              >
+            </template>
+            <template v-slot:label="{ item }">
+              <div>
+                {{item.name}} (id: {{item.id}})
+              </div>
+            </template>
+            <template v-slot:append="{item}">
+              <v-speed-dial
+                v-model="item.fab"
+                direction="left"
+                transition="slide-x-reverse-transition"
+              >
+                <template v-slot:activator>
+                  <v-btn v-model="item.fab" color="blue" dark fab x-small>
+                    <v-icon v-if="item.fab">mdi-close</v-icon>
+                    <v-icon v-else>mdi-wrench-outline</v-icon>
+                  </v-btn>
+                </template>
+                <v-btn dark fab x-small color="orange">
+                  <v-icon>mdi-reload</v-icon>
+                </v-btn>
+                <v-btn fab dark x-small color="green">
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn fab dark x-small color="indigo">
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
+                <v-btn fab dark x-small color="red">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </v-speed-dial>
+            </template>
+          </v-draggable-treeview>
+          <p>end</p>
+        </v-main></v-app
+      >
+    </div>
+    <script src="test.js"></script>
+  </body>
+</html>
